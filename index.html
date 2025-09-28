@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Collen Search Hub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    input { width: 100%; padding: 10px; margin-bottom: 10px; }
+    .result a { display: block; margin: 5px 0; color: blue; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <h2>Search My Tools & Tutorials</h2>
+  <input type="text" id="searchBox" placeholder="Type anything...">
+  <div id="results" class="result"></div>
+
+  <script>
+    const pages = [
+      { name: "YouTube Downloader", url: "youtube-downloader.html" },
+      { name: "FFmpeg Trimmer", url: "ffmpeg-trimmer.html" },
+      { name: "Python Voice Enhancer", url: "voice-enhancer.html" },
+      { name: "Beginner Python Guide", url: "python-guide.html" }
+    ];
+
+    document.getElementById("searchBox").addEventListener("input", function() {
+      const query = this.value.toLowerCase();
+      const matches = pages.filter(p => p.name.toLowerCase().includes(query));
+      document.getElementById("results").innerHTML = matches.length
+        ? matches.map(m => `<a href="${m.url}">${m.name}</a>`).join("")
+        : "<p>No results found.</p>";
+    });
+  </script>
+</body>
+</html>
